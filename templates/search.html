@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+
+      <h1>Find a brewery by State and City</h1>
+      <table align="center">
+        <tr>
+          <td>
+            <h3 align="center">Select a State</h3>
+            <p></p>
+
+            <div align="center">
+            <form action="/search" method="post">
+              <select id="state" name="state" onclick="city_request(this.value);">
+                <option disabled selected value="">Select State</option>
+                {% for state in states %}
+                  <option value="{{state}}">{{state}}</option>
+                {% endfor %}
+              </select>
+            </form>
+            </div>
+          </td>
+
+          <td style="width:6%"></td>
+
+          <td>
+           <div id = "cities"></div>
+          </td>
+
+        </tr>
+
+      </table>
+
+      <table>
+        <tr>
+          <td>
+            <div id = "breweries"></div>
+          </td>
+        </tr>
+      </table>
+
+
+    <script>
+    function city_request(argument)
+    {
+        var aj = new XMLHttpRequest();
+        aj.onreadystatechange = function()
+        {
+            if (aj.readyState == 4 && aj.status == 200){
+
+                document.getElementById("cities").innerHTML = this.responseText;
+            }
+
+        };
+
+        aj.open("GET", "/get_cities?state="+encodeURIComponent(argument), true);
+        aj.send();
+        
+        var aj2 = new XMLHttpRequest();
+        aj2.onreadystatechange = function()
+        {
+            if (aj2.readyState == 4 && aj2.status == 200){
+
+                document.getElementById("breweries").innerHTML = this.responseText;
+            }
+
+        };
+
+        aj2.open("GET", "/get_breweries?state="+encodeURIComponent(argument), true);
+        aj2.send();
+        
+        
+    }
+
+    </script>
+
+    <script>
+    function brewery_request(argument)
+    {
+        var aj = new XMLHttpRequest();
+        aj.onreadystatechange = function()
+        {
+            if (aj.readyState == 4 && aj.status == 200){
+
+                document.getElementById("breweries").innerHTML = this.responseText;
+            }
+
+        };
+
+        aj.open("GET", "/get_breweries?city="+encodeURIComponent(argument)+"&state="+document.getElementById("state").value, true);
+        aj.send();
+    }
+
+    </script>
+    
+    <script>
+    function update_favorite(argument)
+    {
+        var aj = new XMLHttpRequest();
+        aj.onreadystatechange = function()
+        {
+            
+
+        };
+        
+        aj.open("GET", "/update_favorites?checkbox="+encodeURIComponent(argument.checked)+"&id="+encodeURIComponent(argument.id), true);
+        aj.send();
+
+        
+    }
+
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Brewery
+{% endblock %}
+
+{% block main %}
+
+<h1>Add a Brewery</h1>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 70px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+  width: 25%;
+}
+
+.right {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type="text"], textarea {
+
+  background-color : #bbb; 
+
+}
+
+
+</style>
+</head>
+<body>
+  <form action="/add_brewery" method="post" onsubmit="confirm(); return true;">
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>State</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p>
+    <select id="state" name="state" onchange="city_request(this.value);">
+        <option disabled selected value="">Select State</option>
+        {% for state in states %}
+          <option value="{{state}}">{{state}}</option>
+        {% endfor %}
+    </select>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>City</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p><p><input autocomplete="off" class="form-control" name="city" placeholder="City" type="text" min="1" size=60></p></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>Brewery Name</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p><p><input autocomplete="off" class="form-control" name="name" placeholder="Name" type="text" min="1" size=60></p></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>Brewery Address</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p><p><input autocomplete="off" class="form-control" name="street" placeholder="Street Address" type="text" min="1" size=60></p></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>Zip Code</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p><p><input autocomplete="off" class="form-control" name="zip" placeholder="Zip Code" type="text" min="1" size=60></p></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>Phone Number</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p><input autocomplete="off" class="form-control" name="phone" placeholder="10 Digit Phone Number" type="text" min="1" max="10" size=60></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column left" style="background-color:#aaa;">
+
+    <p>Website</p>
+
+  </div>
+  <div class="column right" style="background-color:#bbb;">
+
+    <p><p><input autocomplete="off" class="form-control" name="website" placeholder="Website" type="text" size=60></p></p>
+  </div>
+</div>
+
+<p></p>
+<button type="submit" class="btn btn-success">Submit Brewery</button>
+
+</body>
+
+<script>
+
+  function confirm()
+  {
+      alert("Thank you for the update. Your entry will be reviewed, and entered into the database upon approval.");
+  }
+
+</script>
+
+
+
+{% endblock %}

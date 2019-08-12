@@ -1,0 +1,75 @@
+
+{% block main %}
+<style>
+table {
+  /*font-family: arial, sans-serif;*/
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 6px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<h2 align="center">Breweries in {{city}} {{state}}</h2>
+
+<form action="/favorites" method="post">
+
+<table>
+  <tr>
+    {% if session.user_id %}
+    <th>Favorite</th>
+    {% endif %}
+    <th>Brewery</th>
+    <th>Address</th>
+    <td>City</td>
+    <th>Telephone</th>
+    <th>Type</th>
+  </tr>
+
+  {% for brewery in breweries %}
+    <tr>
+      {% if session.user_id %}
+      <td>
+        <div style="text-align: center;">
+          {% if brewery["favorite"] %}
+          <input type="checkbox" name="{{brewery["id"]}}" id="{{brewery["id"]}}" checked onclick="update_favorite(this);"><br>
+          {% else %}
+          <input type="checkbox" name="{{brewery["id"]}}" id="{{brewery["id"]}}" onclick="update_favorite(this);"><br>
+          {% endif %}
+        </div>
+      </td>
+
+      {% endif %}
+
+      {% if not brewery["website"] %}
+      <td>{{brewery["name"]}}</td>
+      {% else %}
+      <td> <a href={{brewery["website"]}}/>{{brewery["name"]}}</a> </td>
+      {% endif %}
+
+      {% if brewery["street"] %}
+      <td> <a href={{brewery["map"]}}/>{{brewery["street"]}}</a> </td>
+      {% else %}
+      <td>{{brewery["street"]}}</td>
+      {% endif %}
+      
+      <td>{{brewery["city"]}}</td>
+      <td>{{ brewery["phone"] | telephone }}</td>
+      <td>{{brewery["type"]}}</td>
+    </tr>
+  {% endfor %}
+
+</table>
+
+
+</form>
+
+{% endblock %}

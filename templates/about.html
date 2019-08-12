@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block main %}
+
+    <table style="width:100%">
+        <tr>
+            <td>
+                <h2> Welcome to Brewly!</h2>
+                <br>
+                    <table>
+                        <tr>
+                        <td> <a href="/search"> <img alt="Search" src="/static/search.png" width="100" height="100"> </a></td>
+                        <td> <a href="/search">Are you heading to a new city and would like to visit a brewery? Brewly is here for you! Simply select a city\state and Brewly will display all of the local breweries along with helpful information.</a></td>
+                        </tr>
+
+                        <tr>
+                        <td> <a href="/add_brewery"> <img alt="Add Brewery" src="/static/update.png" width="100" height="100"> </a></td>
+                        <td> <a href="/add_brewery"> Would you like to add your brewery? Just head over to the Add Brewery page and submit an update.</a></td>
+                        </tr>
+
+                        <tr>
+                        <td> <a href="/register"> <img alt="Register" src="/static/register.png" width="100" height="100"> </a></td>
+                        <td> <a href="/register"> Register for a free account to track your favorite breweries.</a></td>
+                        </tr>
+
+                        <tr>
+                        <td> <a href="/login"> <img alt="Login" src="/static/login.png" width="100" height="100"> </a></td>
+                        <td> <a href="/login"> Come on in! Click here to log in to your account.</a></td>
+                        </tr>
+                    </table>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}
+

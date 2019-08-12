@@ -1,0 +1,16 @@
+<form action="/search" method="post">
+
+  <h3 align="center">Select a City</h3>
+  <p></p>
+
+  <div align="center">
+  <select id="city" name="city" onclick="brewery_request(this.value);">
+  <option disabled selected value="">Select City</option>
+    {% for city in cities %}
+      <option value="{{city}}">{{city}}</option>
+    {% endfor %}
+  </select>
+  </div>
+
+
+</form>

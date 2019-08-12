@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Updates
+{% endblock %}
+
+{% block main %}
+    <h2 class="mb-3">Add a new brewery entry or update an existing brewery</h1>
+    <div id = "insertdiv2"
+    <form action="/form" method="post">
+        <div>
+            <input type="radio" id="new_entry" name="selector" onclick="new_entry(this.id)"> New Entry
+            <br>
+            <input type="radio" id="update_entry" name="selector" onclick="update_entry(this.id)"> Update Entry
+    </div>
+        </div>
+
+        <div id = "insertdiv">
+
+        </div>
+
+    </form>
+
+    <p></p>
+    <button type="submit" class="btn btn-success">Submit</button>
+
+
+    <script>
+    function update_entry(argument)
+    {
+        var aj = new XMLHttpRequest();
+        aj.onreadystatechange = function()
+        {
+            if (aj.readyState == 4 && aj.status == 200){
+
+                document.getElementById("insertdiv").innerHTML = this.responseText;
+            }
+
+        };
+
+        aj.open("GET", "/search", true);
+        aj.send();
+    }
+
+    </script>
+
+    <script>
+    function new_entry(argument)
+    {
+        var aj = new XMLHttpRequest();
+        aj.onreadystatechange = function()
+        {
+            if (aj.readyState == 4 && aj.status == 200){
+
+                document.getElementById("insertdiv").innerHTML = this.responseText;
+            }
+
+        };
+
+        aj.open("GET", "search.html", true);
+        aj.send();
+    }
+
+    </script>
+
+
+
+
+{% endblock %}
