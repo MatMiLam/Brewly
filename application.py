@@ -33,7 +33,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///Brewly.db")
+# db = SQL("sqlite:///Brewly.db")
+db = SQL(os.getenv("DATABASE_URL"))
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
