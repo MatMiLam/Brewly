@@ -171,7 +171,7 @@ def search():
                 states.append(e["state"])
                 
         return render_template("search.html",
-                states=states)
+                states=states.sort())
 
     
 @app.route("/get_cities", methods=["GET", "POST"])
