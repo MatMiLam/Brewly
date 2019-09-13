@@ -170,6 +170,7 @@ def search():
             if e["state"]:
                 states.append(e["state"])
                 
+        # Sort new state list 
         return render_template("search.html",
                 states=sorted(states))
 
